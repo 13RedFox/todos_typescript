@@ -1,0 +1,14 @@
+.main {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__title {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 120%;
+    color: #c9d1d3;
+  }
+}

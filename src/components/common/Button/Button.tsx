@@ -6,7 +6,7 @@ import styles from './Button.module.scss';
 interface ButtonProps {
   children: ReactNode;
   className?: string;
-  onClick: () => void;
+  onClick?: () => void;
   icon: boolean;
   size: 'default' | 'task';
   color: 'default' | 'add' | 'cancel';
