@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { FC, ReactNode } from 'react';
 import { Icon } from '..';
+
 import styles from './Button.module.scss';
 
 interface ButtonProps {

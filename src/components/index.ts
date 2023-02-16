@@ -1,3 +1,2 @@
-export * from './App/App';
-export * from './Main/Main';
-export * from './Sidebar/Sidebar';
+export * from './Button/Button';
+export * from './Icon/Icon';
