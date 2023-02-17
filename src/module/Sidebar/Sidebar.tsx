@@ -10,7 +10,9 @@ interface SidebarProps {
 }
 
 export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId }) => {
-  const [data, setData] = useState<FolderType[]>([]);
+  const [data, setData] = useState<FolderType[]>([
+    { id: 'b1681e3b938', title: 'Products', color: '#64c4ed' },
+  ]);
 
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
