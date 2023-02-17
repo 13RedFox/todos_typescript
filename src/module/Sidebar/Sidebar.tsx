@@ -1,19 +1,16 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { AddFolderForm, AllTask, FolderList } from '..';
 import { Button } from '../../components';
 import { FolderType } from '../../types/folder.type';
-import { AddFolderForm } from '../AddFolderForm/AddFolderForm';
-import { FolderList } from '../FolderList/FolderList';
 import styles from './Sidebar.module.scss';
 
 interface SidebarProps {
+  data: FolderType[];
+  setData: Dispatch<SetStateAction<FolderType[]>>;
   setCurrentFolderId: Dispatch<SetStateAction<string>>;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId }) => {
-  const [data, setData] = useState<FolderType[]>([
-    { id: 'b1681e3b938', title: 'Products', color: '#64c4ed' },
-  ]);
-
+export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId, data, setData }) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const handleOpenModal = () => {
@@ -23,7 +20,15 @@ export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId }) => {
 
   return (
     <aside className={styles.aside}>
-      <FolderList data={data} />
+      {data.length > 0 && (
+        <>
+          <AllTask
+            name='Все задачи'
+            data={data}
+          />
+          <FolderList data={data} />
+        </>
+      )}
       {!isOpenModal && (
         <Button
           size='default'
