@@ -1,5 +1,5 @@
 import { Dispatch, FC, SetStateAction, useState } from 'react';
-import { AddFolderForm, AllTask, FolderList } from '..';
+import { AddFolderForm, AllTaskButton, FolderList } from '..';
 import { Button } from '../../components';
 import { FolderType } from '../../types/folder.type';
 import styles from './Sidebar.module.scss';
@@ -15,14 +15,13 @@ export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId, data, setData })
 
   const handleOpenModal = () => {
     setIsOpenModal((prevState) => !prevState);
-    console.log('Add folder');
   };
 
   return (
     <aside className={styles.aside}>
       {data.length > 0 && (
         <>
-          <AllTask
+          <AllTaskButton
             name='Все задачи'
             data={data}
           />

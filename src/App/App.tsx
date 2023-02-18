@@ -1,4 +1,5 @@
 import { FC, useState } from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { Main } from '../module/Main/Main';
 import { Sidebar } from '../module/Sidebar/Sidebar';
 import { FolderType } from '../types/folder.type';
@@ -12,12 +13,14 @@ export const App: FC = () => {
 
   return (
     <div className={styles.app}>
-      <Sidebar
-        setCurrentFolderId={setCurrentFolderId}
-        data={data}
-        setData={setData}
-      />
-      <Main data={data} />
+      <BrowserRouter>
+        <Sidebar
+          setCurrentFolderId={setCurrentFolderId}
+          data={data}
+          setData={setData}
+        />
+        <Main data={data} />
+      </BrowserRouter>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 import { Icon } from '../../../components';
 import { FolderType } from '../../../types/folder.type';
 
@@ -11,17 +12,19 @@ export const FolderListItem: FC<FolderListItemProps> = ({ title, color, id }) =>
 
   return (
     <li className={styles.item}>
-      <div
-        className={styles.item__color}
-        style={{ backgroundColor: color }}
-      />
-      <span className={styles.item__title}>
-        {cutTitle}
-        <Icon
-          name='plus'
-          className={styles.item__icon}
+      <Link to={id}>
+        <div
+          className={styles.color}
+          style={{ backgroundColor: color }}
         />
-      </span>
+        <span className={styles.title}>
+          {cutTitle}
+          <Icon
+            name='plus'
+            className={styles.icon}
+          />
+        </span>
+      </Link>
     </li>
   );
 };
