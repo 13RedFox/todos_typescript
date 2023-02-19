@@ -1,7 +1,7 @@
 import { FC } from 'react';
-import { Icon } from '../../..';
-import { TaskType } from '../../../../types/folder.type';
-import styles from '../../Tasks.module.scss';
+import { Icon } from '../..';
+import { TaskType } from '../../../types/folder.type';
+import styles from '../Tasks.module.scss';
 
 interface TaskListItemProps {
   tasks: TaskType[];

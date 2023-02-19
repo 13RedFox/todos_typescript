@@ -24,10 +24,10 @@ export const App: FC = () => {
     {
       id: '46bea30459d',
       title: 'Colors',
-      color: '#64c4ed',
+      color: '#c355f5',
       tasks: [
         { id: '1', title: 'Red', isComplete: false },
-        { id: '2', title: 'Blue', isComplete: false },
+        { id: '2', title: 'Blue', isComplete: true },
         { id: '3', title: 'Green', isComplete: false },
       ],
     },

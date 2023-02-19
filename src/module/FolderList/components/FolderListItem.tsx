@@ -18,7 +18,7 @@ export const FolderListItem: FC<FolderListItemProps> = ({ el }) => {
     <li className={classNames(styles.item)}>
       <NavLink
         to={`/${id}`}
-        className={({ isActive }) => (isActive ? 'active' : '')}
+        className={({ isActive }) => (isActive ? `${styles.item__active}` : '')}
       >
         <div
           className={styles.item__color}

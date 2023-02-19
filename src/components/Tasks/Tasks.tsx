@@ -1,8 +1,7 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { FolderType } from '../../types/folder.type';
-import { TaskListItem } from './components/TaskListItem/TaskListItem';
-import styles from './Tasks.module.scss';
+import { TaskCard } from './components/TaskCard';
 
 interface TasksProps {
   data: FolderType[];
@@ -13,24 +12,21 @@ export const Tasks: FC<TasksProps> = ({ data }): JSX.Element => {
 
   return (
     <>
-      {(data || [])
-        .filter((el) => el.id === id)
-        .map((el) => (
-          <div
-            key={el.id}
-            className={styles.tasks}
-          >
-            <h2
-              className={styles.tasks__title}
-              style={{ color: el.color }}
-            >
-              {el.title}
-            </h2>
-            <ul className={styles.tasks__list}>
-              <TaskListItem tasks={el.tasks} />
-            </ul>
-          </div>
-        ))}
+      {id === 'all'
+        ? (data || []).map((task) => (
+            <TaskCard
+              key={task.id}
+              task={task}
+            />
+          ))
+        : (data || [])
+            .filter((el) => el.id === id)
+            .map((task) => (
+              <TaskCard
+                key={task.id}
+                task={task}
+              />
+            ))}
     </>
   );
 };
