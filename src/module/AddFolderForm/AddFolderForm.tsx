@@ -22,7 +22,7 @@ export const AddFolderForm: FC<AddFolderFormProps> = ({ setIsOpenModal, setData 
   const handleAddFolderSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    const newFolder: FolderType = { id: uid(), title: inputValue, color: activeColor };
+    const newFolder: FolderType = { id: uid(), title: inputValue, color: activeColor, tasks: [] };
     setData((prevState) => [...prevState, newFolder]);
     setIsOpenModal(false);
   };
