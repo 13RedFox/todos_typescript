@@ -5,7 +5,6 @@ import { FolderType } from '../types/folder.type';
 import styles from './App.module.scss';
 
 export const App: FC = () => {
-  const [currentFolderId, setCurrentFolderId] = useState<string>('');
   const [data, setData] = useState<FolderType[]>([
     {
       id: 'b1681e3b938',
@@ -37,7 +36,6 @@ export const App: FC = () => {
   return (
     <div className={styles.app}>
       <Sidebar
-        setCurrentFolderId={setCurrentFolderId}
         data={data}
         setData={setData}
       />

@@ -10,27 +10,26 @@ interface TaskListItemProps {
 export const TaskListItem: FC<TaskListItemProps> = ({ tasks }): JSX.Element => {
   return (
     <>
-      {[] &&
-        tasks.map((task) => (
-          <li
-            key={task.id}
-            className={styles.tasks__item}
-          >
-            <div className={styles.tasks__item_wrapper}>
-              <input
-                type='checkbox'
-                id={task.id}
+      {(tasks || []).map((task) => (
+        <li
+          key={task.id}
+          className={styles.tasks__item}
+        >
+          <div className={styles.tasks__item_wrapper}>
+            <input
+              type='checkbox'
+              id={task.id}
+            />
+            <label htmlFor={task.id}>
+              <Icon
+                name='checked'
+                className={styles.icon}
               />
-              <label htmlFor={task.id}>
-                <Icon
-                  name='checked'
-                  className={styles.icon}
-                />
-              </label>
-            </div>
-            <span className={styles.tasks__item_descr}>{task.title}</span>
-          </li>
-        ))}
+            </label>
+          </div>
+          <span className={styles.tasks__item_descr}>{task.title}</span>
+        </li>
+      ))}
     </>
   );
 };

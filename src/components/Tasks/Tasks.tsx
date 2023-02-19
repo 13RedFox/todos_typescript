@@ -13,20 +13,24 @@ export const Tasks: FC<TasksProps> = ({ data }): JSX.Element => {
 
   return (
     <>
-      {[] &&
-        data
-          .filter((el) => el.id === id)
-          .map((el) => (
-            <div
-              key={el.id}
-              className={styles.tasks}
+      {(data || [])
+        .filter((el) => el.id === id)
+        .map((el) => (
+          <div
+            key={el.id}
+            className={styles.tasks}
+          >
+            <h2
+              className={styles.tasks__title}
+              style={{ color: el.color }}
             >
-              <h2 className={styles.tasks__title}></h2>
-              <ul className={styles.tasks__list}>
-                <TaskListItem tasks={el.tasks} />
-              </ul>
-            </div>
-          ))}
+              {el.title}
+            </h2>
+            <ul className={styles.tasks__list}>
+              <TaskListItem tasks={el.tasks} />
+            </ul>
+          </div>
+        ))}
     </>
   );
 };

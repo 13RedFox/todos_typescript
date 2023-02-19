@@ -14,12 +14,10 @@ export const FolderListItem: FC<FolderListItemProps> = ({ el }) => {
   const { title, color, id } = el;
   const cutTitle = title.length > 10 ? title.slice(0, 10) + '...' : title;
 
-  console.log(id);
-
   return (
     <li className={classNames(styles.item)}>
       <NavLink
-        to={`/${el.id}`}
+        to={`/${id}`}
         className={({ isActive }) => (isActive ? 'active' : '')}
       >
         <div

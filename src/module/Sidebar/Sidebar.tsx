@@ -7,10 +7,9 @@ import styles from './Sidebar.module.scss';
 interface SidebarProps {
   data: FolderType[];
   setData: Dispatch<SetStateAction<FolderType[]>>;
-  setCurrentFolderId: Dispatch<SetStateAction<string>>;
 }
 
-export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId, data, setData }) => {
+export const Sidebar: FC<SidebarProps> = ({ data, setData }) => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
 
   const handleOpenModal = () => {
@@ -21,13 +20,11 @@ export const Sidebar: FC<SidebarProps> = ({ setCurrentFolderId, data, setData })
     <aside className={styles.aside}>
       {data.length > 0 && (
         <>
-          <AllTaskButton
-            name='Все задачи'
-            data={data}
-          />
+          <AllTaskButton name='Все задачи' />
           <FolderList data={data} />
         </>
       )}
+
       {!isOpenModal && (
         <Button
           size='default'
