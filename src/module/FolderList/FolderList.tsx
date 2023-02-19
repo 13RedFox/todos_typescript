@@ -13,9 +13,7 @@ export const FolderList: FC<FolderListProps> = ({ data }) => {
         data.map((el) => (
           <FolderListItem
             key={el.id}
-            title={el.title}
-            color={el.color}
-            id={el.id}
+            el={el}
           />
         ))}
     </ul>
