@@ -1,16 +1,12 @@
-import { Dispatch, FC, SetStateAction, useState } from 'react';
+import { FC, useState } from 'react';
 import { AddFolderForm, AllTaskButton, FolderList } from '..';
 import { Button } from '../../components';
-import { FolderType } from '../../types/folder.type';
+import { useTodos } from '../../utils/store';
 import styles from './Sidebar.module.scss';
 
-interface SidebarProps {
-  data: FolderType[];
-  setData: Dispatch<SetStateAction<FolderType[]>>;
-}
-
-export const Sidebar: FC<SidebarProps> = ({ data, setData }) => {
+export const Sidebar: FC = () => {
   const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
+  const folderData = useTodos((state) => state.folders);
 
   const handleOpenModal = () => {
     setIsOpenModal((prevState) => !prevState);
@@ -18,31 +14,25 @@ export const Sidebar: FC<SidebarProps> = ({ data, setData }) => {
 
   return (
     <aside className={styles.aside}>
-      {data.length > 0 && (
+      {folderData.length > 0 ? (
         <>
           <AllTaskButton name='Все задачи' />
-          <FolderList data={data} />
+          <FolderList />
         </>
-      )}
+      ) : null}
 
-      {!isOpenModal && (
+      {!isOpenModal ? (
         <Button
           size='default'
           color='default'
           type='button'
           icon
-          onClick={handleOpenModal}
-        >
+          onClick={handleOpenModal}>
           Добавить папку
         </Button>
-      )}
+      ) : null}
 
-      {isOpenModal && (
-        <AddFolderForm
-          setIsOpenModal={setIsOpenModal}
-          setData={setData}
-        />
-      )}
+      {isOpenModal ? <AddFolderForm setIsOpenModal={setIsOpenModal} /> : null}
     </aside>
   );
 };

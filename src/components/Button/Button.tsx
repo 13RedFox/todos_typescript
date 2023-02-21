@@ -26,8 +26,7 @@ export const Button: FC<ButtonProps> = ({
     <button
       type={type}
       className={classNames(styles.button, styles[size], styles[color], className)}
-      onClick={onClick}
-    >
+      onClick={onClick}>
       {icon && (
         <Icon
           name='plus'

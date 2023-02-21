@@ -1,19 +1,18 @@
 import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from 'react';
-import { uid } from 'uid';
 import { Button, Icon } from '../../components';
-import { FolderType } from '../../types/folder.type';
+import { useTodos } from '../../utils/store';
 import styles from './AddFolderForm.module.scss';
 import { AddFolderFormColors } from './components/AddFolderFormColors';
 import { FolderColor } from './types/color.type';
 
 interface AddFolderFormProps {
   setIsOpenModal: Dispatch<SetStateAction<boolean>>;
-  setData: Dispatch<SetStateAction<FolderType[]>>;
 }
 
-export const AddFolderForm: FC<AddFolderFormProps> = ({ setIsOpenModal, setData }) => {
+export const AddFolderForm: FC<AddFolderFormProps> = ({ setIsOpenModal }) => {
   const [inputValue, setInputValue] = useState<string>('');
   const [activeColor, setActiveColor] = useState<FolderColor>(FolderColor.Gray);
+  const addFolder = useTodos((state) => state.addFolder);
 
   const handleInputValue = (e: ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -22,16 +21,14 @@ export const AddFolderForm: FC<AddFolderFormProps> = ({ setIsOpenModal, setData 
   const handleAddFolderSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    const newFolder: FolderType = { id: uid(), title: inputValue, color: activeColor, tasks: [] };
-    setData((prevState) => [...prevState, newFolder]);
+    addFolder(inputValue, activeColor);
     setIsOpenModal(false);
   };
 
   return (
     <form
       className={styles.form}
-      onSubmit={handleAddFolderSubmit}
-    >
+      onSubmit={handleAddFolderSubmit}>
       <input
         type='text'
         placeholder='Название папки'
@@ -48,14 +45,12 @@ export const AddFolderForm: FC<AddFolderFormProps> = ({ setIsOpenModal, setData 
         type='submit'
         color='add'
         icon={false}
-        className={styles.form__btn}
-      >
+        className={styles.form__btn}>
         Добавить
       </Button>
       <div
         className={styles.form__close}
-        onClick={() => setIsOpenModal(false)}
-      >
+        onClick={() => setIsOpenModal(false)}>
         <Icon name='plus' />
       </div>
     </form>

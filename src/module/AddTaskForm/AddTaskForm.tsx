@@ -1,7 +1,7 @@
 import { ChangeEvent, Dispatch, FC, FormEvent, SetStateAction, useState } from 'react';
-import { uid } from 'uid';
+import { useParams } from 'react-router-dom';
 import { Button } from '../../components';
-import { TaskType } from '../../types/folder.type';
+import { useTodos } from '../../utils/store';
 import styles from './AddTaskForm.module.scss';
 
 interface AddTaskFormProps {
@@ -10,29 +10,19 @@ interface AddTaskFormProps {
 
 export const AddTaskForm: FC<AddTaskFormProps> = ({ setShowTaskForm }): JSX.Element => {
   const [inputValue, setInputValue] = useState<string>('');
-  const [task, setTask] = useState<TaskType[]>([]);
+  const folderData = useTodos((state) => state.addTask);
+  const { id } = useParams();
 
   const addTaskFormSubmit = (e: FormEvent<HTMLFormElement>): void => {
     e.preventDefault();
 
-    setTask((prevState) => {
-      return [
-        ...prevState,
-        {
-          id: uid(),
-          title: inputValue,
-          isComplete: false,
-        },
-      ];
-    });
-
+    folderData(inputValue, id);
     setShowTaskForm(false);
   };
   return (
     <form
       className={styles.form}
-      onSubmit={addTaskFormSubmit}
-    >
+      onSubmit={addTaskFormSubmit}>
       <input
         type='text'
         value={inputValue}
@@ -46,8 +36,7 @@ export const AddTaskForm: FC<AddTaskFormProps> = ({ setShowTaskForm }): JSX.Elem
           color='add'
           icon={false}
           type='submit'
-          className={styles.form__wrap_btn}
-        >
+          className={styles.form__wrap_btn}>
           Добавить задачу
         </Button>
         <Button
@@ -55,8 +44,7 @@ export const AddTaskForm: FC<AddTaskFormProps> = ({ setShowTaskForm }): JSX.Elem
           icon={false}
           type='button'
           color='default'
-          className={styles.form__wrap_btn}
-        >
+          className={styles.form__wrap_btn}>
           Отмена
         </Button>
       </div>

@@ -13,12 +13,11 @@ export const TaskListItem: FC<TaskListItemProps> = ({ tasks }): JSX.Element => {
       {(tasks || []).map((task) => (
         <li
           key={task.id}
-          className={styles.tasks__item}
-        >
+          className={styles.tasks__item}>
           <div className={styles.tasks__item_wrapper}>
             <input
-              type='checkbox'
               id={task.id}
+              type='checkbox'
             />
             <label htmlFor={task.id}>
               <Icon

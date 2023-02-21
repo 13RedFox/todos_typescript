@@ -11,7 +11,6 @@ interface TaskCardProps {
 }
 export const TaskCard: FC<TaskCardProps> = ({ task }): JSX.Element => {
   const [showTaskForm, setShowTaskForm] = useState<boolean>(false);
-
   const { id } = useParams();
 
   const toggleTaskForm = () => {
@@ -21,12 +20,10 @@ export const TaskCard: FC<TaskCardProps> = ({ task }): JSX.Element => {
   return (
     <div
       key={task.id}
-      className={styles.tasks}
-    >
+      className={styles.tasks}>
       <h2
         className={styles.tasks__title}
-        style={{ color: task.color }}
-      >
+        style={{ color: task.color }}>
         {task.title}
       </h2>
       <ul className={styles.tasks__list}>
@@ -39,12 +36,11 @@ export const TaskCard: FC<TaskCardProps> = ({ task }): JSX.Element => {
           size='task'
           color='cancel'
           className={styles.tasks__btn}
-          onClick={toggleTaskForm}
-        >
+          onClick={toggleTaskForm}>
           Новая задача
         </Button>
       ) : null}
-      {showTaskForm && <AddTaskForm setShowTaskForm={setShowTaskForm} />}
+      {showTaskForm ? <AddTaskForm setShowTaskForm={setShowTaskForm} /> : null}
     </div>
   );
 };

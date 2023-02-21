@@ -1,25 +1,22 @@
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
-import { FolderType } from '../../types/folder.type';
+import { useTodos } from '../../utils/store';
 import { TaskCard } from './components/TaskCard';
 
-interface TasksProps {
-  data: FolderType[];
-}
-
-export const Tasks: FC<TasksProps> = ({ data }): JSX.Element => {
+export const Tasks: FC = (): JSX.Element => {
   const { id } = useParams();
+  const folderData = useTodos((state) => state.folders);
 
   return (
     <>
       {id === 'all'
-        ? (data || []).map((task) => (
+        ? (folderData || []).map((task) => (
             <TaskCard
               key={task.id}
               task={task}
             />
           ))
-        : (data || [])
+        : (folderData || [])
             .filter((el) => el.id === id)
             .map((task) => (
               <TaskCard

@@ -1,21 +1,19 @@
 import { FC } from 'react';
-import { FolderType } from '../../types/folder.type';
+import { useTodos } from '../../utils/store';
 import { FolderListItem } from './components/FolderListItem';
 import styles from './FolderList.module.scss';
 
-interface FolderListProps {
-  data: FolderType[];
-}
-export const FolderList: FC<FolderListProps> = ({ data }) => {
+export const FolderList: FC = () => {
+  const todosData = useTodos((state) => state.folders);
+
   return (
     <ul className={styles.list}>
-      {[] &&
-        data.map((el) => (
-          <FolderListItem
-            key={el.id}
-            el={el}
-          />
-        ))}
+      {(todosData || []).map((folder) => (
+        <FolderListItem
+          key={folder.id}
+          folder={folder}
+        />
+      ))}
     </ul>
   );
 };

@@ -14,8 +14,7 @@ export const AllTaskButton: FC<AllTaskButtonProps> = ({ name }): JSX.Element => 
       to='/all'
       className={({ isActive }) =>
         isActive ? classNames(styles.all, styles.all__active) : styles.all
-      }
-    >
+      }>
       <Icon
         name='all'
         className={styles.all__icon}

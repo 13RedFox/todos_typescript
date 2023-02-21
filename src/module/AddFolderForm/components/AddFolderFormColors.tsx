@@ -16,25 +16,23 @@ export const AddFolderFormColors: FC<AddFolderFormColorsProps> = ({
 
   return (
     <div className={styles.colors}>
-      {[] &&
-        colors.map((color) => (
-          <div
-            key={color}
-            className={classNames(styles.colors__wrap)}
-          >
-            <input
-              type='radio'
-              id={color}
-              value={color}
-              checked={activeColor === color}
-              onChange={() => setActiveColor(color)}
-            />
-            <label
-              htmlFor={color}
-              style={{ backgroundColor: color }}
-            />
-          </div>
-        ))}
+      {(colors || []).map((color) => (
+        <div
+          key={color}
+          className={classNames(styles.colors__wrap)}>
+          <input
+            type='radio'
+            id={color}
+            value={color}
+            checked={activeColor === color}
+            onChange={() => setActiveColor(color)}
+          />
+          <label
+            htmlFor={color}
+            style={{ backgroundColor: color }}
+          />
+        </div>
+      ))}
     </div>
   );
 };

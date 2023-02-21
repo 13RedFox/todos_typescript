@@ -16,4 +16,33 @@
     line-height: 120%;
     color: #c9d1d3;
   }
+
+  &__close {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: gray;
+    cursor: pointer;
+    &:hover .icon {
+      path {
+        stroke: #4dd599;
+      }
+    }
+  }
+  .icon {
+    width: 13px;
+    height: 13px;
+    transform: rotate(45deg);
+    path {
+      stroke: #ffffff;
+      transition: stroke 0.3s ease-in-out;
+    }
+  }
 }

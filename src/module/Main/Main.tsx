@@ -1,24 +1,26 @@
 import { FC } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { Tasks } from '../../components';
-import { FolderType } from '../../types/folder.type';
+import { useTodos } from '../../utils/store';
 import styles from './Main.module.scss';
 
-interface MainProps {
-  data: FolderType[];
-}
+export const Main: FC = (): JSX.Element => {
+  const folderData = useTodos((state) => state.folders);
 
-export const Main: FC<MainProps> = ({ data }): JSX.Element => {
   return (
     <main className={styles.main}>
       <Routes>
         <Route
           path='/'
-          element={!data.length && <h1 className={styles.main__title}>Задачи отсутствуют</h1>}
+          element={
+            folderData.length < 1 ? (
+              <h1 className={styles.main__title}>Задачи отсутствуют или не были выбраны...</h1>
+            ) : null
+          }
         />
         <Route
           path='/:id'
-          element={<Tasks data={data} />}
+          element={<Tasks />}
         />
       </Routes>
     </main>
