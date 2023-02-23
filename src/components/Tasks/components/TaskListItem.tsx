@@ -1,3 +1,4 @@
+import classNames from 'classnames';
 import { FC } from 'react';
 import { useParams } from 'react-router-dom';
 import { Icon } from '../..';
@@ -20,8 +21,7 @@ export const TaskListItem: FC<TaskListItemProps> = ({ tasks }): JSX.Element => {
       {(tasks || []).map((task) => (
         <li
           key={task.id}
-          className={styles.tasks__item}
-          onClick={() => removeTask(id, task.id)}>
+          className={styles.tasks__item}>
           <div className={styles.tasks__item_wrapper}>
             <input
               id={task.id}
@@ -36,7 +36,14 @@ export const TaskListItem: FC<TaskListItemProps> = ({ tasks }): JSX.Element => {
               />
             </label>
           </div>
-          <span className={styles.tasks__item_descr}>{task.title}</span>
+          <span className={styles.tasks__item_descr}>
+            {task.title}
+            <Icon
+              name='plus'
+              className={classNames(id !== 'all' ? styles.removeIcon : styles.hidden)}
+              onClick={() => removeTask(id, task.id)}
+            />
+          </span>
         </li>
       ))}
     </>

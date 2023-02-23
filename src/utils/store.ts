@@ -9,7 +9,7 @@ interface useTodosProps {
   deleteFolder: (id: string) => void;
   addTask: (title: string, id: string | undefined) => void;
   toggleTaskComplete: (folderId: string | undefined, taskId: string) => void;
-  removeTask: (id: string | undefined, taskId: string) => void;
+  removeTask: (folderId: string | undefined, taskId: string) => void;
 }
 
 export const useTodos = create<useTodosProps>()(
@@ -45,11 +45,15 @@ export const useTodos = create<useTodosProps>()(
             }),
           });
         },
-        removeTask: (id) => {
+        removeTask: (folderId, taskId) => {
           set({
-            folders: get().folders.filter((folder) =>
-              folder.id === id ? folder.tasks.filter((task) => task.id !== id) : folder,
-            ),
+            folders: get().folders.filter((folder) => {
+              if (folder.id !== folderId) {
+                return folder;
+              }
+              folder.tasks = folder.tasks.filter((task) => task.id !== taskId);
+              return folder;
+            }),
           });
         },
       }),

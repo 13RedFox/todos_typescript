@@ -45,10 +45,10 @@
       }
 
       input:checked + label {
-        background-color: #f2f2f2;
+        background-color: #4dd599;
         .icon {
           path {
-            stroke: #b3b3b3;
+            stroke: #ffffff;
           }
         }
       }
@@ -65,10 +65,10 @@
         border: 2px solid #f2f2f2;
         transition: background-color 0.3s ease-in-out;
         &:hover {
-          background-color: #4dd599;
+          background-color: #f2f2f2;
           .icon {
             path {
-              stroke: #ffffff;
+              stroke: #b3b3b3;
             }
           }
         }
@@ -79,6 +79,30 @@
       font-size: 16px;
       font-weight: 500;
       line-height: 118%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      &:hover .removeIcon {
+        opacity: 1;
+      }
     }
   }
+}
+
+.removeIcon,
+.hiden {
+  width: 13px;
+  height: 13px;
+  cursor: pointer;
+  transform: rotate(45deg);
+  transition: opacity 0.3s ease-in-out;
+}
+
+.removeIcon {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
 }
